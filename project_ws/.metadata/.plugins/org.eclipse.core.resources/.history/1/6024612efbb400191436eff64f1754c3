@@ -1,0 +1,10 @@
+package com.bit129web.model.member;
+
+public class MemberVO {
+	private String memberID;
+	private String memberPWD;
+	private String memberName;
+	private String memberEmail;
+	private String memberPhone;
+	
+}

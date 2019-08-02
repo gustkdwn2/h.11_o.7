@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<script type="text/javascript">
+		function startOn() {
+			location.href = "BoardList.do";
+		}
+	</script>
+</head>
+<body onclick="startOn()">
+	
+</body>
+</html>

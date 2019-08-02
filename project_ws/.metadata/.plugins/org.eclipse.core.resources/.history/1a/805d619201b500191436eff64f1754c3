@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>login</title>
+</head>
+<body>
+	<form action="./LoginAddAction" method="post" name="loginform">
+		<table>
+			<tr>
+				<td>아이디</td>
+				<td></td>
+			</tr>
+			
+		</table>
+		아아디 : <input type="text" name="login_id">
+		비밀번호 : <input type="password" name="login_pwd">
+		
+	</form>
+</body>
+</html>

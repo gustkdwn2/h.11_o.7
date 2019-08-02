@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<script type="text/javascript">
+	function startOn() {
+		location.href = "Main.do";
+	}
+</script>
+</head>
+<body>
+	
+</body>
+</html>

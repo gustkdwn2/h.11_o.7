@@ -1,0 +1,5 @@
+package edu.bit.board.action;
+
+public interface CommandAction {
+
+}

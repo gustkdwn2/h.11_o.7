@@ -1,0 +1,14 @@
+package com.dao;
+
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class EmpDAO {
+	int empno;
+	DataSource dataFactory;
+	
+	public EmpDAO() {
+		Contect ctx = new InitialContext();
+	}
+	
+}

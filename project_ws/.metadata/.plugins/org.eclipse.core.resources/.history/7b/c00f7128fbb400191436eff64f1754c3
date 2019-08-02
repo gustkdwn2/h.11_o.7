@@ -1,0 +1,5 @@
+package com.bit129web.model.member;
+
+public class MemberVO {
+
+}
