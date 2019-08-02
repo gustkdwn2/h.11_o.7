@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bit129web.action.Action;
 import com.bit129web.action.ActionForward;
 import com.bit129web.action.LoginAction;
+import com.bit129web.action.MemberjoinAction;
 
 @WebServlet("*.do")
 public class Bit129webFrontController extends HttpServlet {
@@ -38,8 +39,15 @@ public class Bit129webFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./main.jsp");
-		} else if (command.equals("/LoginAction.do")) {
+		} else if (command.equals("./LoginAction.do")) {
 			action = new LoginAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("./MemberjoinAction.do")) {
+			action = new MemberjoinAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
