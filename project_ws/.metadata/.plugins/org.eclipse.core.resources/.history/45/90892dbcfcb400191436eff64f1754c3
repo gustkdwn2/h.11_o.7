@@ -1,8 +1,0 @@
-package com.bit129web.model.member;
-
-public class MemberDAO {
-	DataSource ds;
-	Connection con;
-	PreparedStatement pstmt;
-	ResultSet rs;
-}

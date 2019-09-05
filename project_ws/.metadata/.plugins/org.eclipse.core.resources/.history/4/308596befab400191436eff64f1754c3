@@ -1,9 +1,0 @@
-select * from member;
-drop table member;
-
-CREATE TABLE member(
-memberID VARCHAR2(20) PRIMARY KEY,
-memberPWD VARCHAR2(20),
-column3 DATE_TYPE3,
-column4 DATE_TYPE4
-)

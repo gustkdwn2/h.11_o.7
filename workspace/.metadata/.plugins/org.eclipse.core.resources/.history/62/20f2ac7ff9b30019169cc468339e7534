@@ -1,9 +1,0 @@
-package com.domain;
-
-public class EmpDTO {
-	
-	
-	public EmpDTO() { }
-	
-	
-}
