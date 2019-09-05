@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title>FrontController 패턴 실습 </title>
+</head>
+<body>
+<h1>FrontController 패턴 실습</h1>
+
+1.EL 이용해서 출력 :
+ 
+
+<br>
+
+2.JSTL & EL 이용해서 출력 :
+
+<hr>
+<a href="insert.do">저장하기</a><br>
+<a href="view/delete.do">삭제하기</a><br>
+<a href="http://localhost:8080/day52_mvc/view/update.do">수정하기</a><br>
+<a href="select.do">조회하기</a><br>
+</body>
+</html>

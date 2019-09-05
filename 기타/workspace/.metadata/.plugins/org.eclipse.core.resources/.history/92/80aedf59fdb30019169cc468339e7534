@@ -1,0 +1,22 @@
+package com.dao;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+public class EmpDAO {
+	int empno;
+	DataSource dataFactory;
+	
+	public EmpDAO() {
+		try {
+			Context ctx = new InitialContext();
+			dataFactory = (DataSource)ctx.lookup("java:comp/env/jdbc:EmpDB");
+			System.out.println("connection success!!");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+}
