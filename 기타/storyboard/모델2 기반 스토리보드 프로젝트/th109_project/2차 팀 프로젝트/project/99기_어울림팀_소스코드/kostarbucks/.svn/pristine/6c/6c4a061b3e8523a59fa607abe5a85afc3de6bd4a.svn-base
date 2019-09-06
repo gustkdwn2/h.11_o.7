@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.kosta.kostarbucks.dao.ChainDao">
+
+	<select id="chainList" resultType="edu.kosta.kostarbucks.vo.ChainListVo">
+		select chain_name, chain_list.chain_id from chain_list,BASIC_INFO 
+		where BASIC_INFO.chain_id=CHAIN_LIST.chain_id
+	</select>
+	
+	<select resultType="edu.kosta.kostarbucks.vo.BasicInfoVo" id="chainDetail" 
+	parameterType="java.lang.String"> 
+		Select address, chain_phone from basic_info where chain_id = #{chain_id}
+	</select>
+	
+	<select id="saleItemDetail" parameterType="java.lang.String" 
+	resultType="edu.kosta.kostarbucks.vo.SaleItemVo">
+		select * from sale_item where chain_id like '%'||#{chain_id}||'%'
+	</select>
+
+</mapper>

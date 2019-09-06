@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.chainList{
+	width:200px;
+	height: 170px;
+	border: 1px solid gray;
+	text-align: center;
+	float: left;
+	margin: 20px;
+}
+.chainList img{
+	width:198px;
+	height:145px;
+}
+</style>
+</head>
+<body>
+	<header><%@include file="../header&footer/header.jsp"%></header>
+	<script type="text/javascript" src="<c:url value='js/chain.js'/>"></script>
+	<div id="middleSpace">
+	<h3>Chain Store</h3>
+	- 나의 일상이 되는 또다른 공간<br><br>
+	<c:forEach items="${list }" var="list">
+	<div class="chainList" onclick="chainDetail('${list.chain_id}','${list.chain_name}')">
+	<img src="<c:url value='img/chain/${list.chain_id }.jpg'/>">
+	<p>${list.chain_name }</p>
+	</div>
+	</c:forEach>
+	</div>
+</body>
+</html>

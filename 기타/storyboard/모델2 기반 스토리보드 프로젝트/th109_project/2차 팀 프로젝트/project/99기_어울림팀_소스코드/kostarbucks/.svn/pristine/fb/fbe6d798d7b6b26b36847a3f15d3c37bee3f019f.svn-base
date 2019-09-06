@@ -1,0 +1,95 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header><%@include file="../header&footer/header.jsp"%></header>
+	<script type="text/javascript" src="<c:url value='js/idea.js'/>"></script>
+	<div id="middleSpace">
+	<h3>아이디어 게시판</h3>
+	- 반짝이는 아이디어를 올려주세요!<br><br>
+		<table width="100%">
+			<colgroup>
+				<col width="10%">
+				<col width="50%">
+				<col width="20%">
+				<col width="20%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>날짜</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img src="<c:url value='img/icon/notice.png' />"
+						width="25"></td>
+					<td><a href="ideaDetail.do?idea_num=${ideaNotice.idea_num}">
+							${ideaNotice.idea_title }</a></td>
+					<td>${ideaNotice.mem_name }</td>
+					<td><f:formatDate value="${ideaNotice.idea_date }" pattern="yyyy-MM-dd"/></td>
+				</tr>
+				<c:forEach items="${ideaList }" var="list">
+					<tr>
+						<td>${list.idea_num }</td>
+						<td><span onclick="ideaDetail('${list.idea_num}','${loginInform.mem_name}','${list.mem_name}')">${list.idea_title }</span></td>
+						<td>${list.mem_name }</td>
+						<td><f:formatDate value="${list.idea_date }" pattern="yyyy-MM-dd"/></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<c:if test="${!empty loginInform}">
+		<button type="button" onclick="javascript:location.href='ideaWriteForm.do?'">글쓰기</button>
+		</c:if>
+
+		<!-- 페이징 table -->
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<!-- 처음 이전 링크 --> <c:if test="${pg>block}">
+						<!-- 5>10 : false / 15>10 : true -->
+
+						<a href="stock_list.do?pg=1"><img
+							src="<c:url value='img/icon/arrowsleft.png'/>"></a>
+						<a href="stock_list.do?pg=${fromPage-1}"><img
+							src="<c:url value='img/icon/arrowleft.png'/>"></a>
+					</c:if> <c:if test="${pg<=block}">
+						<!-- 5<=10 :true / 15<=10:false -->
+						<span style="color: gray"><img
+							src="<c:url value='img/icon/arrowsleft.png'/>"></span>
+						<span style="color: gray"><img
+							src="<c:url value='img/icon/arrowleft.png'/>"></span>
+					</c:if> <!-- 블록 범위 찍기 --> <c:forEach begin="${fromPage}" end="${toPage}"
+						var="i">
+						<c:if test="${i==pg}">${i}</c:if>
+						<c:if test="${i!=pg}">
+							<a href="stock_list.do?pg=${i}">${i}</a>
+						</c:if>
+					</c:forEach> <!-- 다음, 이후 --> <c:if test="${toPage<allPage}">
+						<!-- 20<21 : true -->
+						<a href="stock_list.do?pg=${toPage+1}"><img
+							src="<c:url value='img/icon/arrowright.png'/>"></a>
+						<a href="stock_list.do?pg=${allPage}"><img
+							src="<c:url value='img/icon/arrowright.png'/>"></a>
+					</c:if> <c:if test="${toPage>=allPage}">
+						<!-- 21>=21 :true -->
+						<span style="color: gray"><img
+							src="<c:url value='img/icon/arrowright.png'/>"></span>
+						<span style="color: gray"><img
+							src="<c:url value='img/icon/arrowsright.png'/>"></span>
+					</c:if>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+</body>
+</html>

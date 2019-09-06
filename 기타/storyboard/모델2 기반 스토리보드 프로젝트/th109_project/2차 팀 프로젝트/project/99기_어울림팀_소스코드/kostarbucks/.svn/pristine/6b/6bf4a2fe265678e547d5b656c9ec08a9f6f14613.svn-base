@@ -1,0 +1,103 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header><%@include file="../header&footer/header.jsp"%></header>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#clicked").hide();
+	    $("#saleList").click(function(){
+	        $("#clicked").toggle();
+	    });
+	});
+	</script>
+	<div id="middleSpace">
+		<h3>My KostarBucks</h3>
+		- 내가 다녀간 발자국 보기<br>
+		<br>
+		<c:if test="${loginInform.mem_rank ne 'WelcomLevel'}">
+			<div>
+				<p>${loginInform.mem_name }님은현재 ${loginInform.mem_rank }입니다.
+				<br>KostarBucks에 대한 지속적인 사랑에 감사드리며, <br>${loginInform.mem_rank }만의
+				특별한 혜택을 누려보세요!</p>
+			</div>
+		</c:if>
+		<c:if test="${loginInform.mem_rank eq 'WelcomLevel'}">
+			<div>
+				<p>${loginInform.mem_name }님은현재 ${loginInform.mem_rank }입니다.
+				<br>KostarBucks에 대한 지속적인 사랑 부탁드립니다!</p>
+			</div>
+		</c:if>
+
+		<div id="saleList"
+			style="width: 200px; height: 30px; margin-top: 20px;">+ My History</div>
+		<div id="clicked" >
+		
+		<c:if test="${!empty message}">
+			${message}
+		</c:if>
+		<c:if test="${empty message}">
+			<table width="50%">
+				<tr>
+					<td>제품명</td>
+					<td>체인점명</td>
+					<td>날짜</td>
+				</tr>
+				<c:forEach items="${mySaleList }" var="list">
+					<tr>
+						<td>${list.item_name }</td>
+						<td>${list.chain_name }</td>
+						<td><f:formatDate value="${list.sale_date }"
+						pattern="yyyy-MM-dd" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+			
+					<!-- 페이징 table -->
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<!-- 처음 이전 링크 --> <c:if test="${pg>block}">
+
+						<a href="stock_list.do?pg=1"><img
+							src="<c:url value='img/icon/arrowsleft.png'/>"></a>
+						<a href="stock_list.do?pg=${fromPage-1}"><img
+							src="<c:url value='img/icon/arrowleft.png'/>"></a>
+					</c:if> <c:if test="${pg<=block}">
+						<!-- 5<=10 :true / 15<=10:false -->
+						<span style="color: gray"><img
+							src="<c:url value='img/icon/arrowsleft.png'/>"></span>
+						<span style="color: gray"><img
+							src="<c:url value='img/icon/arrowleft.png'/>"></span>
+					</c:if> <!-- 블록 범위 찍기 --> <c:forEach begin="${fromPage}" end="${toPage}"
+						var="i">
+						<c:if test="${i==pg}">${i}</c:if>
+						<c:if test="${i!=pg}">
+							<a href="stock_list.do?pg=${i}">${i}</a>
+						</c:if>
+					</c:forEach> <!-- 다음, 이후 --> <c:if test="${toPage<allPage}">
+						<!-- 20<21 : true -->
+						<a href="stock_list.do?pg=${toPage+1}"><img
+							src="<c:url value='img/icon/arrowright.png'/>"></a>
+						<a href="stock_list.do?pg=${allPage}"><img
+							src="<c:url value='img/icon/arrowright.png'/>"></a>
+					</c:if> <c:if test="${toPage>=allPage}">
+						<!-- 21>=21 :true -->
+						<span style="color: gray"><img
+							src="<c:url value='img/icon/arrowright.png'/>"></span>
+						<span style="color: gray"><img
+							src="<c:url value='img/icon/arrowsright.png'/>"></span>
+					</c:if>
+				</td>
+			</tr>
+		</table></c:if>
+		</div>
+
+	</div>
+</body>
+</html>

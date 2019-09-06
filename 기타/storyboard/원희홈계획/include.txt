@@ -1,0 +1,20 @@
+<!-- #include file = "../lib/adovbs.inc"    -->
+<!-- #include file = "../lib/conf.asp"-->
+<!-- #include file = "../lib/lib_frAuth.asp"-->
+<!-- #include file = "../lib/lib2_frAuth.asp"-->
+
+---------------
+<%@Language = "VBScript"%>
+<%Option Explicit%>
+<!-- #include file = "../lib/adovbs.inc"    -->
+<!-- #include file = "../lib/conf.asp"-->
+<!-- #include file = "../lib/lib_frAuth.asp"-->
+<!-- #include file = "../lib/lib2_frAuth.asp"-->
+<%
+'-------권한 확인부
+'On Error Resume Next '에러 발생시 그냥 지나침
+const OBJECT_ID = "11"
+	response.Cookies("frAuth")("objectId") = OBJECT_ID
+%>
+<html>
+<style 

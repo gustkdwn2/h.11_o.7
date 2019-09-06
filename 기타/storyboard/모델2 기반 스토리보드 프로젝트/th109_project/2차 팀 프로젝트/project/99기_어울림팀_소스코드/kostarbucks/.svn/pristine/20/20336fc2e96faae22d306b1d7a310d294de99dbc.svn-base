@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.kosta.kostarbucks.dao.IdeaBoardDao">
+
+	<select id="ideaBoardRecord" resultType="Integer">
+		select count(*) from idea_board where idea_state='일반'
+	</select>
+	
+	<select id="ideaNotice" resultType="edu.kosta.kostarbucks.vo.IdeaBoardVo">
+		select * from idea_board where idea_state='공지'
+	</select>
+	
+	<select id="ideaList" parameterType="hashmap" resultType="edu.kosta.kostarbucks.vo.IdeaBoardVo">
+		select * from
+		(select A.*,ROWNUM r from
+		(select * from idea_board where idea_state='일반' 
+		order by idea_date desc) A
+		)
+		where r >= #{start} and r &lt;=#{end} and idea_state='일반'
+	</select>
+	
+	<select id="ideaDetail" parameterType="Integer" resultType="edu.kosta.kostarbucks.vo.IdeaBoardVo">
+		select * from idea_board where idea_num=#{idea_num}
+	</select>
+	
+	<update id="ideaReadCount" parameterType="Integer">
+		update idea_board set idea_readcount=idea_readcount+1 where idea_num=#{idea_num}
+	</update>
+
+	<insert id="ideaWrite" parameterType="edu.kosta.kostarbucks.vo.IdeaBoardVo">
+		insert into idea_board values(#{idea_title},idea_board_seq.nextval,
+		#{mem_name},sysdate,0,#{idea_content},'일반')
+	</insert>
+	
+		<update id="ideaUpdate" parameterType="edu.kosta.kostarbucks.vo.IdeaBoardVo">
+		update idea_board set idea_title=#{idea_title}, idea_content=#{idea_content}
+		where idea_num = #{idea_num}
+	</update>
+	
+	<delete id="ideaDelete" parameterType="java.lang.String">
+		delete idea_board where idea_num = #{idea_num}
+	</delete>
+
+</mapper>

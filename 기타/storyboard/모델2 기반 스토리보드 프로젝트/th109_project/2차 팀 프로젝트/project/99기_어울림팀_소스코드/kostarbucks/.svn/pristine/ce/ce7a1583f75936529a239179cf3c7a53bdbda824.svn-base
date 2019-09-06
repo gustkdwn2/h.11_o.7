@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+body, html {
+	margin: 0;
+	padding: 0;
+	background-image: url('../img/coffee-bg.jpg');
+	background-size: cover;
+}
+
+#leftSpace {
+	width: 10%;
+	height: 90px;
+	/* background-color: black; */
+	float: left;
+	border-top:2px solid #f5c738;
+}
+
+#logoSpace {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 25pt;
+	font-weight: bold;
+	width: 60%;
+	height: 90px;
+	/* background-color: black; */
+	color: #f5c738;
+	float: left;
+	line-height: 90px;
+	border-top:2px solid #f5c738;
+}
+
+#logoSpace a{
+	text-decoration: none;
+	color:#f5c738;
+}
+
+#logoSpace a:hover{
+	color:#f5c738;
+}
+
+#navSpace {
+	width: 30%;
+	height: 90px;
+	/* background-color: black; */
+	float: left;
+	border-top:2px solid #f5c738;
+}
+
+#navSpace ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#navSpace li {
+	margin-top: 35px;
+	margin-right: 20px;
+	float: left;
+}
+
+#navSpace li a {
+	text-decoration: none;
+	color: white;
+}
+
+#navSpace li a:hover {
+	color: #f5c738;
+}
+
+#middleSpace {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 30pt;
+	font-style: italic;
+	color: white;
+	width: 100%;
+	height: 500px;
+	float: left;
+	text-align: center;
+	display: table;
+}
+
+#headerContent {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#middleSpace button {
+	font-style: normal;
+	color: white;
+}

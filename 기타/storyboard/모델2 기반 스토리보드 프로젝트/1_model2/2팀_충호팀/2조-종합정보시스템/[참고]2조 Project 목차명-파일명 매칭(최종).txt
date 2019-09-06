@@ -1,0 +1,103 @@
+- 메인 화면 - main.jsp / MainAction.java / main.do
+   ├ 로그인 파트 - login.do -> LoginFormAction.java -> logincheck.jsp		- 폴더명 : login
+	          -> loginSuc.do -> LoginSucAction.java -> loginSuc.jsp
+   └ 로그아웃 파트 - logout.do -> LogoutAction.java -> logout.jsp
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- 사용자 종합정보시스템 첫 페이지 - info.jsp / InfoAction.java / info.do
+- 사용자 메뉴 - left.jsp
+
+- 학적 관리 - 폴더명 : basic
+   ├ 학적 조회
+         ├ 기본 사항 - basicForm.jsp / BasicAction.java / basic.do
+         ├ 장학 사항 - scholarshipForm.jsp / ScholarshipAction.java / scholarship.do
+         ├ 지도 교수 - adviserForm.jsp / AdviserAction.java / adviser.do
+   └ 정보 수정
+         └ 개인 정보 수정 - basicEditForm.jsp / BasicEditAction.java / basicEdit.do
+                                - basicEditPro.jsp / BasicEditProAction.java / basicEditPro.do
+                                - basicEditSuc.jsp / BasicEditSucAction.java / basicEditSuc.do
+
+- 성적 관리 - 폴더명 : grade
+   ├ 성적 조회(금학기) - currentGradeForm.jsp / CurrentGradeAction.java / currentGrade.do
+   └ 성적 조회(누적) - gradeViewForm.jsp / GradeViewAction.java / gradeView.do
+
+- 수강신청 - 폴더명 : pick
+   └ 수강 신청 - pickSubjectForm.jsp / PickSubjectAction.java / pickSubject.do
+
+- 신청 서비스 - 폴더명 : request
+   ├ 휴학 신청 - i_o_AbsenceForm.jsp / I_o_AbsenceAction.java / i_o_Absence.do
+	       - i_o_AbsencePro.jsp / I_o_AbsenceProAction.java / i_o_AbsencePro.do
+   ├ 복학 신청 - g_b_SchoolForm.jsp / G_b_SchoolAction.java / g_b_School.do 
+	       - g_b_SchoolPro.jsp / G_b_SchoolProAction.java / g_b_SchoolPro.do 
+   └ 전과 신청 - c_MajorForm.jsp / C_MajorAction.java / c_Major.do
+	       - c_MajorPro.jsp / C_MajorProAction.java / c_MajorPro.do
+
+- 강의 자료실 - 폴더명 : lectureData
+   ├ 강의 계획서 - lectureDateForm.jsp / LectureDateAction.java / lectureDate.do
+			- lectureDateContents.jsp / LectureDateContentsAction.java / lectureDateContents.do
+   ├ 강의 자료 - lectureListForm.jsp / LectureListFormAction.java / lectureListForm.do
+			- lectureMaterialListForm.jsp / LectureMaterialListFormAction.java / lectureMaterialListForm.do
+			- 강의 자료 파일 다운로드 부분 / LectureFileDownload.java / lecturedownload.do
+   └ 과제물 제출 - stuSubmitListForm.jsp / StuSubmitListFormAction.java / stuSubmitListForm.do
+			- stuSubmitView.jsp / StuSubmitViewAction.java / stuSubmitView.do
+			- 강의 자료 파일 업로드 부분 / StuSubmitFileUpload.java / upload.do
+			- 강의 자료 파일 다운로드 부분 / StuSubmitFileDownload.java / download.do
+
+- 계절 학기 - 폴더명 : season
+   ├ 계절학기 수강 신청 - seasonSubjcetForm.jsp / SeasonSubjcetAction.java / seasonSubjcet.do
+   └ 계절학기 성적 - seasonGradeForm.jsp / SeasonGradeAction.java / seasonGrade.do
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- 관리자 종합정보시스템 첫 페이지 - admininfo.jsp / AdminInfoAction.java / admininfo.do
+- 관리자 메뉴 - adminleft.jsp
+
+- 관리자 개인정보 - 폴더명 : adminBasic
+   ├ 개인 정보 보기 - adminBasicForm.jsp / AdminBasicAction.java / adminBasic.do
+   └ 개인 정보 수정 - adminBasicEditForm.jsp / AdminBasicEditAction.java / adminBasicEdit.do	
+                          - adminBasicUpdateForm.jsp / AdminUpdateEditAction.java / adminBasicUpdate.do
+
+- 학생정보 - 폴더명 : stuBasic
+   ├ 학생 정보 보기 - stuBasicForm.jsp / StuBasicAction.java / stuBasic.do
+   ├ 학생 성적 보기 - stuGradeForm.jsp / StuGradeAction.java / stuGrade.do
+		 - stuGradeDetailFrom.jsp / StuGradeDetailAction.java / stuGradeDetail.do
+         └ 수정 - stuGradeUpdateForm.jsp / StuGradeUpdateAction.java / stuGradeUpdate.do
+	       - stuGradeUpdatePro.jsp / StuGradeUpdateProAction.java / stuGradeUpdatePro.do
+   └ 학생 수강신청 내역 - stuPickSubjectForm.jsp / StuPickSubjectAction.java / stuPickSubject.do
+
+- 승인페이지 - 폴더명 : approve
+   ├ 휴학 승인 - absenceApproveForm.jsp / AbsenceApproveAction.java / absenceApprove.do
+	       - absenceApprovePro.jsp / AbsenceApproveProAction.java / absenceApprovePro.do
+   ├ 복학 승인 - returnApproveForm.jsp / ReturnApproveAction.java / returnApprove.do 
+	       - majorApprovePro.jsp / ReturnApproveProAction.java / returnApprovePro.do
+   └ 전과 승인 - majorApproveForm.jsp / MajorApproveAction.java / majorApprove.do
+	       - returnApprovePro.jsp / MajorApproveProAction.java / majorApprovePro.do
+
+- 수업정보 - 폴더명 : adminLecture / adminLectureMaterial / adminSubmit
+   ├ 강의 계획서 - adminLectureDateForm.jsp / AdminLectureDateAction.java / adminLectureDateForm.do
+			- adminLectureDateContents.jsp / AdminLectureDateContentsAction.java / adminLectureDateContentsAction.do
+				 - updateLectureDateForm.java / UpdateLectureDateFormAction / updateLectureDateForm.do
+					- updateLectureDatePro.jsp / UpdateLectureDateProAction / updateLectureDatePro.do
+   ├ 강의 자료 관리 - adminLectureMaterial.jsp / AdminLectureMaterialAction.java / adminLectureMaterial.do
+			- adminLectureMaterialListForm.jsp / AdminLectureMaterialListFormAction.java / adminLectureMaterialListForm.do
+				- adminLectureMaterialWriteForm.jsp / AdminLectureMaterialWriteFormAction.java adminLectureMaterialWriteForm.do
+					- adminLectureMaterialWritePro.jsp / AdminLectureMaterialWriteProAction.java / adminLectureMaterialWritePro.do
+   └ 강의 과제물 관리 - adminSubmit.jsp / AdminSubmitAction.java / adminSubmit.do
+			- adminSubmitListForm.jsp / AdminSubmitListFormAction.java / adminSubmitListForm.do
+				- adminSubmitWriteForm.jsp / AdminSubmitWriteFormAction.java / adminSubmitWriteForm.do
+					- adminSubmitWritePro.jsp / AdminSubmitWriteProAction.java / adminSubmitWritePro.do
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- 총 관리자 종합정보시스템 첫 페이지 - mainAdminInfo.jsp / MainAdminInfoAction.java / mainAdminInfo.do 
+- 총 관리자 메뉴 - mainadminleft.jsp
+
+- 강 의 설 정 - 폴더명 : lectureSetting
+   ├ 강 의 개 설 - lectureCreateForm.jsp / LectureCreateAction.java / lectureCreate.do
+	         - lectureCreatePro.jsp / LectureCreateProAction.java / lectureCreatePro.do
+   └ 강 의 수 정 - lectureUpdateForm.jsp / LectureUpdateAction.java / lectureUpdate.do
+ 	         - lectureUpdatePro.jsp / LectureUpdateProAction.java / lectureUpdatePro.do
+ 	         - lectureUpdateProc.jsp / LectureUpdateProcAction.java / lectureUpdateProc.do
+	         - lectureDeleteForm.jsp / LectureDeleteAction.java / lectureDelete.do
+

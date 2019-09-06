@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.kosta.kostarbucks.dao.ChainDao">
+
+	<!-- 체인점 목록 -->
+	<select id="chainList" resultType="edu.kosta.kostarbucks.vo.ChainListVo">
+		select chain_name, chain_list.chain_id from chain_list,BASIC_INFO 
+		where BASIC_INFO.chain_id=CHAIN_LIST.chain_id
+	</select>
+	
+	<!-- 체인점 상세 정보 -->
+	<select resultType="edu.kosta.kostarbucks.vo.BasicInfoVo" id="chainDetail" 
+	parameterType="java.lang.String"> 
+		Select address, chain_phone from basic_info where chain_id = #{chain_id}
+	</select>
+	
+	<!-- 해당 체인점 메뉴 -->
+	<select id="saleItemDetail" parameterType="java.lang.String" 
+	resultType="edu.kosta.kostarbucks.vo.SaleItemVo">
+		select * from sale_item where chain_id like '%'||#{chain_id}||'%'
+	</select>
+	
+	<!-- 발생한 난수가 상품권 테이블에 있는지 검색 -->
+	<select id="cardkey" parameterType="java.lang.String" 
+	resultType="edu.kosta.kostarbucks.vo.GiftCardVo">
+		select * from giftcard where giftcardnumber = #{key}
+	</select>
+	
+	<!-- 상품권테이블에 난수 등록 -->
+	<insert id="createkey" parameterType="java.lang.String">
+		insert into giftcard(giftcardnumber, giftcardprice) values(#{key},10000)
+	</insert>
+
+</mapper>

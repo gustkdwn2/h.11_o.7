@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.kosta.kostarbucks.dao.IdeaBoardDao">
+
+	<!-- 아이디어게시판 RecordCount -->
+	<select id="ideaBoardRecord" resultType="Integer">
+		select count(*) from idea_board where idea_state='일반'
+	</select>
+	
+	<!-- 아이디어게시판 공지사항 -->
+	<select id="ideaNotice" resultType="edu.kosta.kostarbucks.vo.IdeaBoardVo">
+		select * from idea_board where idea_state='공지'
+	</select>
+	
+	<!-- 아이디어게시판 일반게시글 목록 -->
+	<select id="ideaList" parameterType="hashmap" resultType="edu.kosta.kostarbucks.vo.IdeaBoardVo">
+		select * from
+		(select A.*,ROWNUM r from
+		(select * from idea_board where idea_state='일반' or idea_state='채택'
+		order by idea_date desc) A
+		)
+		where r >= #{start} and r &lt;=#{end} and idea_state='일반' or idea_state='채택'
+	</select>
+	
+	<!-- 아이디어게시판 상세보기 -->
+	<select id="ideaDetail" parameterType="Integer" resultType="edu.kosta.kostarbucks.vo.IdeaBoardVo">
+		select * from idea_board where idea_num=#{idea_num}
+	</select>
+	
+	<!-- 아이디어게시판 조회수 증가 -->
+	<update id="ideaReadCount" parameterType="Integer">
+		update idea_board set idea_readcount=idea_readcount+1 where idea_num=#{idea_num}
+	</update>
+
+	<!-- 아이디어게시판 글쓰기 -->
+	<insert id="ideaWrite" parameterType="edu.kosta.kostarbucks.vo.IdeaBoardVo">
+		insert into idea_board values(#{idea_title},idea_board_seq.nextval,
+		#{mem_name},sysdate,0,#{idea_content},'일반')
+	</insert>
+	
+	<!-- 아이디어게시판 수정 -->
+	<update id="ideaUpdate" parameterType="edu.kosta.kostarbucks.vo.IdeaBoardVo">
+		update idea_board set idea_title=#{idea_title}, idea_content=#{idea_content}
+		where idea_num = #{idea_num}
+	</update>
+	
+	<!-- 아이디어게시판 게시글 삭제 -->
+	<delete id="ideaDelete" parameterType="java.lang.String">
+		delete idea_board where idea_num = #{idea_num}
+	</delete>
+	
+	<!-- 아이디어 게시판의 상태를 채택으로 변경 -->
+	<update id="stateUpdate" parameterType="java.lang.String">
+		update idea_board set idea_state='채택' where idea_num=#{idea_num}
+	</update>
+
+</mapper>

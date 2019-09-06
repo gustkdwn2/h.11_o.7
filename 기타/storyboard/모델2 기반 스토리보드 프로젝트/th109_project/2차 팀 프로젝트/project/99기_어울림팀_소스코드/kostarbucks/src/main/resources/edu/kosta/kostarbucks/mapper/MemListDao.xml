@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.kosta.kostarbucks.dao.MemListDao">
+
+	<!-- 회원번호 확인 -->
+	<select id="memNumCheck" parameterType="java.lang.String"
+	 resultType="edu.kosta.kostarbucks.vo.MemListVo">
+		select mem_num, mem_name from mem_list where mem_num=#{mem_num}
+	</select>
+	
+	<!-- 메일 중복 확인 -->
+	<select id="memEmailCheck" parameterType="java.lang.String" 
+	resultType="edu.kosta.kostarbucks.vo.MemListVo">
+		select mem_email from mem_list where mem_email=#{mem_email}
+	</select>
+	
+	<!-- 회원가입 -->
+	<update id="join" parameterType="edu.kosta.kostarbucks.vo.MemListVo">
+		update mem_list set mem_name=#{mem_name}, mem_email=#{mem_email}, mem_phone=#{mem_phone},
+		mem_pwd=#{mem_pwd}, mem_rank='Welcome Level' where mem_num=#{mem_num}
+	</update>
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="edu.kosta.kostarbucks.vo.MemListVo" 
+	resultType="edu.kosta.kostarbucks.vo.MemListVo">
+		select * from mem_list where mem_email=#{mem_email} and mem_pwd=#{mem_pwd}
+	</select>
+	
+	<!--  해당 회원이 구매목록 -->
+	<select id="mySaleList" parameterType="hashmap" 
+	resultType="edu.kosta.kostarbucks.vo.SaleListVo">		
+		select * from
+		(select A.*,ROWNUM r from
+		(select * from sale_list where mem_num=#{mem_num}
+		order by sale_date desc) A
+		)
+		where r >= #{start} and r &lt;=#{end} and mem_num=#{mem_num}
+	</select>
+	
+	<!-- 해당 회원이 구매한 RecordCount -->
+	<select id="mySaleListRecord" parameterType="java.lang.String" resultType="Integer">
+		select count(*) from sale_list where mem_num=#{mem_num}
+	</select>
+	
+	<!-- 해당 회원의 메일 검색 -->
+	<select id="findEmail" parameterType="java.lang.String" 
+	resultType="edu.kosta.kostarbucks.vo.MemListVo">
+		select mem_email from mem_list where mem_name=#{mem_name}
+	</select>
+
+</mapper>

@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header><%@include file="../header&footer/header.jsp"%></header>
+	<script type="text/javascript" src="<c:url value='js/idea.js'/>"></script>
+	<div id="middleSpace">
+		<h3>아이디어 게시판</h3>
+		- 반짝이는 아이디어를 올려주세요!<br><br>
+		<table width="100%">
+			<colgroup>
+				<col width="15%">
+				<col width="35%">
+				<col width="15%">
+				<col width="35%">
+			</colgroup>
+			<tr>
+				<th>제목</th>
+				<td colspan="3">${ideaDetail.idea_title }</td>
+				<th></th>
+				<td></td>
+			</tr>
+			<tr>
+				<th>번호</th>
+				<td>${ideaDetail.idea_num }</td>
+				<th>날짜</th>
+				<td><f:formatDate value="${ideaDetail.idea_date }"
+						pattern="yyyy-MM-dd" /></td>
+			</tr>
+			<tr>
+				<th>작성자</th>
+				<td>${ideaDetail.mem_name }</td>
+				<th>조회수</th>
+				<td>${ideaDetail.idea_readcount }</td>
+			</tr>
+			<tr>
+				<td colspan="4">${ideaDetail.idea_content }</td>
+			</tr>
+		</table>
+		<c:if test="${loginInform.mem_name eq ideaDetail.mem_name }">
+		<button type="button" onclick="javascript:location.href='ideaUpdateForm.do?idea_num=${ideaDetail.idea_num}'">수정</button>
+		<button type="button" onclick="delConfirm('${ideaDetail.idea_num}')">삭제</button>
+		</c:if>
+		<c:if test="${loginInform.mem_name ne ideaDetail.mem_name }">
+		<c:if test="${loginInform.mem_name eq '관리자' }">
+		<button type="button" onclick="delConfirm('${ideaDetail.idea_num}')">삭제</button>
+		<button type="button" onclick="choiceConfirm('${ideaDetail.idea_num}')">채택</button>
+		</c:if></c:if>
+		<footer></footer>
+	</div>
+</body>
+</html>

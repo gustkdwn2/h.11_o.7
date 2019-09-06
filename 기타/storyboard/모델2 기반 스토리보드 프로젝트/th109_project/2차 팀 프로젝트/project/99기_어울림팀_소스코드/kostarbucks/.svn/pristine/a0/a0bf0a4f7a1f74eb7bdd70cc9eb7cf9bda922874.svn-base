@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.kosta.kostarbucks.dao.MemListDao">
+
+	<select id="memNumCheck" parameterType="java.lang.String"
+	 resultType="edu.kosta.kostarbucks.vo.MemListVo">
+		select mem_num, mem_name from mem_list where mem_num=#{mem_num}
+	</select>
+	
+	<select id="memEmailCheck" parameterType="java.lang.String" 
+	resultType="edu.kosta.kostarbucks.vo.MemListVo">
+		select mem_email from mem_list where mem_email=#{mem_email}
+	</select>
+	
+	<update id="join" parameterType="edu.kosta.kostarbucks.vo.MemListVo">
+		update mem_list set mem_name=#{mem_name}, mem_email=#{mem_email}, mem_phone=#{mem_phone},
+		mem_pwd=#{mem_pwd}, mem_rank='WelcomLevel' where mem_num=#{mem_num}
+	</update>
+	
+	<select id="login" parameterType="edu.kosta.kostarbucks.vo.MemListVo" 
+	resultType="edu.kosta.kostarbucks.vo.MemListVo">
+		select * from mem_list where mem_email=#{mem_email} and mem_pwd=#{mem_pwd}
+	</select>
+	
+	<select id="mySaleList" parameterType="hashmap" 
+	resultType="edu.kosta.kostarbucks.vo.SaleListVo">		
+		select * from
+		(select A.*,ROWNUM r from
+		(select * from sale_list where mem_num=#{mem_num}
+		order by sale_date desc) A
+		)
+		where r >= #{start} and r &lt;=#{end} and mem_num=#{mem_num}
+	</select>
+	
+	<select id="mySaleListRecord" parameterType="java.lang.String" resultType="Integer">
+		select count(*) from sale_list where mem_num=#{mem_num}
+	</select>
+
+</mapper>
