@@ -18,3 +18,38 @@ VALUES (seq_board.nextval, '테스트 제목', '테스트 내용', 'user00');
 commit;
 
 select * from tbl_board;
+select * from tbl_board order by bno desc;
+
+insert into tbl_board (bno, title, content, writer)
+(select seq_board.nextval, title, content, writer from tbl_board);
+commit;
+
+select count(*) from tbl_board;
+select * from tbl_board order by bno desc;
+desc tbl_board;
+
+select /*+ INDEX_DESC(tbl_board pk_board) */ * from tbl_board where bno >0;
+
+create table tbl_reply(
+    rno number(10,0),
+    bno number(10,0) not null,
+    reply varchar2(1000) not null,
+    replyer varchar2(50) not null,
+    replyDate date default sysdate,
+    updateDate date default sysdate
+);
+
+create sequence seq_reply;
+
+alter table tbl_reply add constraint pk_reply primary key (rno);
+select * from tbl_board where rownum < 10 order by bno desc;
+
+alter table tbl_reply add constraint fk_reply_board
+foreign key (bno) references tbl_board (bno);
+
+select * from tbl_reply order by rno desc;
+
+select rno, bno, reply, replyer, replyDate, updatedate
+		from tbl_reply
+		where bno = 404
+		order by rno asc;
