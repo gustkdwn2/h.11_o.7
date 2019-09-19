@@ -1,6 +1,7 @@
 package org.sangju.mapper;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,17 +24,23 @@ public class ReplyMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper mapper;
 
-	/*
-	 * @Test public void testMapper() { log.info(mapper); }
-	 * 
-	 * @Test public void testCreate() { IntStream.range(1, 10).forEach(i -> {
-	 * ReplyVO vo = new ReplyVO();
-	 * 
-	 * //게시물 번호 vo.setBno(bnoArr[i%5]); vo.setReply("댓글 테스트 " + i);
-	 * vo.setReplyer("replyer " + i); mapper.insert(vo);
-	 * 
-	 * }); }
-	 */
+	@Test
+	public void testMapper() {
+		log.info(mapper);
+	}
+
+	@Test
+	public void testCreate() {
+		IntStream.range(1, 10).forEach(i -> {
+			ReplyVO vo = new ReplyVO();
+
+			// 게시물 번호 vo.setBno(bnoArr[i%5]); vo.setReply("댓글 테스트 " + i);
+			vo.setReplyer("replyer " + i);
+			mapper.insert(vo);
+
+		});
+	}
+
 	/*
 	 * @Test public void testRead() { Long targetRno = 5L;
 	 * 
@@ -49,10 +56,9 @@ public class ReplyMapperTests {
 	 * mapper.read(targetRno); vo.setReply("Update Reply"); int count =
 	 * mapper.update(vo); log.info("UPDATE COUNT: " + count); }
 	 */
-	@Test
-	public void testList() {
-		Criteria cri = new Criteria();
-		List<ReplyVO> replies = mapper.getListWithPaging(cri, bnoArr[4]);
-		replies.forEach(reply -> log.info(reply));
-	}
+	/*
+	 * @Test public void testList() { Criteria cri = new Criteria(); List<ReplyVO>
+	 * replies = mapper.getListWithPaging(cri, bnoArr[4]); replies.forEach(reply ->
+	 * log.info(reply)); }
+	 */
 }
