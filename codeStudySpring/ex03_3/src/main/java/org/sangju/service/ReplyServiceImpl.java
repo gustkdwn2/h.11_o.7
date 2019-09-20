@@ -3,6 +3,7 @@ package org.sangju.service;
 import java.util.List;
 
 import org.sangju.domain.Criteria;
+import org.sangju.domain.ReplyPageDTO;
 import org.sangju.domain.ReplyVO;
 import org.sangju.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,11 @@ import lombok.extern.log4j.Log4j;
 
 @Service
 @Log4j
-public class ReplyServiceImpl implements ReplyService{
+public class ReplyServiceImpl implements ReplyService {
 
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper mapper;
-	
+
 	@Override
 	public int register(ReplyVO vo) {
 		return mapper.insert(vo);
@@ -41,6 +42,14 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public List<ReplyVO> getList(Criteria cri, Long bno) {
 		return mapper.getListWithPaging(cri, bno);
+	}
+
+	@Override
+	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
+		return new ReplyPageDTO(
+			mapper.getCountByBno(bno),
+			mapper.getListWithPaging(cri, bno)
+		);
 	}
 
 }

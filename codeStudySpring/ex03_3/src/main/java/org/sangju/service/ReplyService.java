@@ -3,6 +3,7 @@ package org.sangju.service;
 import java.util.List;
 
 import org.sangju.domain.Criteria;
+import org.sangju.domain.ReplyPageDTO;
 import org.sangju.domain.ReplyVO;
 
 public interface ReplyService {
@@ -15,4 +16,6 @@ public interface ReplyService {
 	public int remove(Long rno);
 	
 	public List<ReplyVO> getList(Criteria cri, Long bno);
+
+	public ReplyPageDTO getListPage(Criteria cri, Long bno);
 }

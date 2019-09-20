@@ -11,7 +11,7 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig"> 
 
 		<property name="driverClassName"
 			value="oracle.jdbc.OracleDriver"></property>
@@ -39,12 +39,5 @@
 	<context:component-scan
 		base-package="org.sangju.service" />
 
-	<mvc:annotation-driven>
-		<mvc:message-converters>
-			<bean
-				class="org.springframework.http.converter.StringHttpMessageConverter" />
-			<bean
-				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
-		</mvc:message-converters>
-	</mvc:annotation-driven>
+	<mvc:annotation-driven />
 </beans>
