@@ -220,10 +220,11 @@
 					}
 					str += "</ul></div>";
 					console.log(str);
-					replyPageFooter(str);
+					replyPageFooter.html(str);
 				}
 
 				replyPageFooter.on("click", "li a", function (e) {
+					
 					e.preventDefault();
 					console.log("page click");
 					var targetPageNum = $(this).attr("href");
